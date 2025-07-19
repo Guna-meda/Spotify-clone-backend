@@ -1,6 +1,5 @@
 import { User } from "../modules/user.module.js";
 
-
 const callbackAuth = async (res, req) => {
   try {
     const { id, firstName, lastName, imageUrl } = req.body;
