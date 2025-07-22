@@ -1,8 +1,13 @@
 import { User } from "../modules/user.module.js";
 
-const callbackAuth = async (res, req) => {
+const callbackAuth = async (req, res) => {
   try {
+
+        console.log("🔁 Auth Callback Hit");
+
     const { id, firstName, lastName, imageUrl } = req.body;
+        console.log("📦 Received:", { id, firstName, lastName, imageUrl });
+
 
     //check if user already exists
     const user = await User.findOne({ clerkId: id });
@@ -15,6 +20,9 @@ const callbackAuth = async (res, req) => {
         imageUrl,
       });
     }
+
+          console.log("✅ New user created:", newUser);
+
 
     res.status(200).json({ success: true });
   } catch (error) {
