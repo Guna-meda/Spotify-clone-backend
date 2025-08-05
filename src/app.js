@@ -45,7 +45,7 @@ app.use("/api/v1/song" , songRoute)
 app.use("/api/v1/album" , albumRoute)
 app.use("/api/v1/stat" , statRoute)
 
-app.use((err,res,req,next) => {
+app.use((err, req, res, next) => {
   res.status(500).json({message: process.env.NODE_ENV === "production"?"Internal server error" :err.message})
 })
 

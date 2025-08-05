@@ -5,6 +5,7 @@ export const getAllSongs = async (req,res,next) => {
     //-1 => decending , new to old
     //1 is ascending , old to new
     const songs = await Song.find().sort({createdAt: -1 })
+    res.json(songs)
   } catch (error) {
     console.log ("Error in getAllSongs" , error);
     next(error)
@@ -14,9 +15,9 @@ export const getAllSongs = async (req,res,next) => {
 export const getFeaturedSongs = async (req,res,next)=> {
 try {
   //fetch 6 random songs
-  const songs = await Song.aggreate([
+  const songs = await Song.aggregate([
     {
-      sample: {size:6},
+      $sample: {size:6},
     },
     {
       $project:{
@@ -39,9 +40,9 @@ try {
 export const getMadeForYou = async (req,res,next)=> {
 try {
   //fetch  random songs
-  const songs = await Song.aggreate([
+  const songs = await Song.aggregate([
     {
-      sample: {size:4},
+      $sample: {size:4},
     },
     {
       $project:{
@@ -63,9 +64,9 @@ try {
 
 export const getTrendingSongs = async (req,res,next)=> {
 try {
-  const songs = await Song.aggreate([
+  const songs = await Song.aggregate([
     {
-      sample: {size:4},
+      $sample: {size:4},
     },
     {
       $project:{
