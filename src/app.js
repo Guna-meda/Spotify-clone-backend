@@ -10,8 +10,11 @@ const _dirname=path.resolve();
 
 app.use(
   cors({
-    origin: process.env.CORS_ORIGIN,
-    credentials: true,
+origin: [
+      "http://localhost:3000", // for local dev
+      "https://spotify-clone-5g33.vercel.app", // production
+      "https://spotify-clone-5g33-8xm9goo12-gunas-projects-a30cf894.vercel.app", // preview
+    ],    credentials: true,
   })
 );
 
