@@ -27,7 +27,7 @@ export const createSong = async (req, res, next) => {
     await song.save();
 
     if (albumId) {
-      await Album.findByAndUpdate(albumId, {
+      await Album.findByIdAndUpdate(albumId, {
         $push: { songs: song._id },
       });
     }
@@ -46,7 +46,7 @@ export const deleteSong = async (req, res, next) => {
     const song = await Song.findById(id);
 
     if (song.albumId) {
-      await Album.findByAndUpdate(song.albumId, {
+      await Album.findByIdAndUpdate(song.albumId, {
         $pull: { songs: song._id },
       });
     }
